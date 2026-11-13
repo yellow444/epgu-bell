@@ -1,0 +1,74 @@
+{
+  "release": "0.2.0-rc.1",
+  "date": "2026-11-13",
+  "mock_only": true,
+  "source_tests": {
+    "python": 40,
+    "node": 7
+  },
+  "free_package": {
+    "mock_only": true,
+    "package_version": "0.2.0-rc.1",
+    "installer": "Windows native .NET Framework executable",
+    "image_archive_loaded": true,
+    "package_sha256_verified": true,
+    "corrupted_package_rejected": true,
+    "existing_settings_preserved": true,
+    "image_demo": {
+      "mock_only": true,
+      "edition": "free",
+      "max_organizations": 1,
+      "headless": true,
+      "first_count": 2,
+      "second_count": 2,
+      "stored_unique": 2,
+      "same_hash": true,
+      "json_validated": true,
+      "http_import_codes": [
+        201,
+        201
+      ],
+      "unauthorized_rejected": true,
+      "wrong_context_rejected": true,
+      "second_organization_rejected": true,
+      "expired_session_preserves_records": true,
+      "coverage_complete": false,
+      "external_unread_count": 7,
+      "external_read_effect": "unknown"
+    },
+    "api_import_codes": [
+      201,
+      201
+    ],
+    "api_unique_after_each": [
+      2,
+      2
+    ],
+    "api_unauthorized_rejected": true,
+    "api_untrusted_origin_rejected": true,
+    "api_wrong_context_rejected": true,
+    "organization_change_on_restart_rejected": true,
+    "own_containers_stopped": true
+  },
+  "private_multi_image": {
+    "mock_only": true,
+    "edition": "private-multi",
+    "organizations": 2,
+    "rounds": 2,
+    "unique_per_organization": [
+      1,
+      1
+    ],
+    "same_external_ids_isolated": true,
+    "stores_separate": true,
+    "compiled_image_tested": true,
+    "external_network_disabled": true
+  },
+  "application_py_sources_in_free_image": 0,
+  "private_multi_module_in_free_image": false,
+  "live_portal_tested_in_this_acceptance": false,
+  "new_remote_repositories_created": false,
+  "published": false,
+  "scope": "local mock acceptance before GitHub publication",
+  "existing_installations_changed": false
+}

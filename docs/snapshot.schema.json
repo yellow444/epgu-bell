@@ -1,0 +1,601 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "snapshot_id",
+    "observed_at",
+    "source",
+    "context",
+    "status",
+    "basis",
+    "external_read_effect",
+    "external_unread_count",
+    "coverage",
+    "extraction",
+    "notifications",
+    "issues",
+    "content_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "1.0",
+        "1.1",
+        "1.2"
+      ]
+    },
+    "snapshot_id": {
+      "type": "string",
+      "pattern": "^snp_[a-f0-9]{32}$"
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "basis": {
+      "enum": [
+        "browser_dom",
+        "portal_feed_api"
+      ]
+    },
+    "external_read_effect": {
+      "const": "unknown"
+    },
+    "status": {
+      "enum": [
+        "succeeded",
+        "partial",
+        "needs_user_action"
+      ]
+    },
+    "external_unread_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 9999999
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "channel",
+        "url"
+      ],
+      "properties": {
+        "kind": {
+          "const": "gosuslugi_bell"
+        },
+        "channel": {
+          "enum": [
+            "browser",
+            "extension",
+            "http"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2048
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "connection_id",
+        "organization_id",
+        "contour",
+        "verified"
+      ],
+      "properties": {
+        "connection_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "organization_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "contour": {
+          "enum": [
+            "test",
+            "prod"
+          ]
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "subject_type": {
+          "const": "person"
+        },
+        "person_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "organization_id": {
+              "type": "string"
+            }
+          },
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "subject_type"
+                ]
+              },
+              {
+                "required": [
+                  "person_id"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "required": [
+            "subject_type",
+            "person_id"
+          ],
+          "properties": {
+            "organization_id": {
+              "type": "null"
+            }
+          }
+        }
+      ]
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "complete",
+        "detail",
+        "reason"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "loaded_dom",
+            "feed_api_page"
+          ]
+        },
+        "complete": {
+          "const": false
+        },
+        "detail": {
+          "enum": [
+            "visible_fields_only",
+            "list_fields_only"
+          ]
+        },
+        "reason": {
+          "enum": [
+            "context_unverified",
+            "layout_unknown",
+            "explicit_empty_current_view",
+            "loaded_dom_only",
+            "returned_api_page"
+          ]
+        },
+        "api_has_more": {
+          "type": "boolean"
+        }
+      }
+    },
+    "extraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method"
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "configured",
+            "llm_proposed",
+            "api_fields"
+          ]
+        },
+        "selector_plan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "items",
+            "title",
+            "body",
+            "sender",
+            "time",
+            "link",
+            "category"
+          ],
+          "properties": {
+            "items": {
+              "$ref": "#/$defs/selector"
+            },
+            "title": {
+              "$ref": "#/$defs/selector"
+            },
+            "body": {
+              "$ref": "#/$defs/selector"
+            },
+            "sender": {
+              "$ref": "#/$defs/selector"
+            },
+            "time": {
+              "$ref": "#/$defs/selector"
+            },
+            "link": {
+              "$ref": "#/$defs/selector"
+            },
+            "category": {
+              "$ref": "#/$defs/selector"
+            }
+          }
+        },
+        "field_names": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_.]{1,40}$"
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "selector_plan"
+          ],
+          "properties": {
+            "method": {
+              "enum": [
+                "configured",
+                "llm_proposed"
+              ]
+            }
+          },
+          "not": {
+            "required": [
+              "field_names"
+            ]
+          }
+        },
+        {
+          "required": [
+            "field_names"
+          ],
+          "properties": {
+            "method": {
+              "const": "api_fields"
+            }
+          },
+          "not": {
+            "required": [
+              "selector_plan"
+            ]
+          }
+        }
+      ]
+    },
+    "issues": {
+      "type": "array",
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z_]{1,80}$"
+      }
+    },
+    "notifications": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "$ref": "#/$defs/notification"
+      }
+    }
+  },
+  "$defs": {
+    "selector": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 180
+    },
+    "encoded": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "encoding",
+        "charset",
+        "data"
+      ],
+      "properties": {
+        "encoding": {
+          "const": "base64"
+        },
+        "charset": {
+          "const": "utf-8"
+        },
+        "data": {
+          "type": "string",
+          "maxLength": 600000
+        }
+      }
+    },
+    "notification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source_id",
+        "identity_quality",
+        "title",
+        "body",
+        "sender",
+        "body_available",
+        "body_coverage",
+        "category",
+        "occurred_at",
+        "time_display",
+        "time_raw",
+        "read_state",
+        "url",
+        "attachments"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ntf_[a-f0-9]{64}$"
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 512
+        },
+        "identity_quality": {
+          "enum": [
+            "source_id",
+            "content_hash"
+          ]
+        },
+        "title": {
+          "$ref": "#/$defs/encoded"
+        },
+        "body": {
+          "$ref": "#/$defs/encoded"
+        },
+        "sender": {
+          "$ref": "#/$defs/encoded"
+        },
+        "time_display": {
+          "$ref": "#/$defs/encoded"
+        },
+        "body_available": {
+          "type": "boolean"
+        },
+        "body_coverage": {
+          "enum": [
+            "visible_only",
+            "list_only"
+          ]
+        },
+        "category": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 120
+        },
+        "occurred_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "time_raw": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "read_state": {
+          "enum": [
+            "read",
+            "unread",
+            "unknown"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2048
+        },
+        "attachments": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "url",
+              "downloaded"
+            ],
+            "properties": {
+              "name": {
+                "$ref": "#/$defs/encoded"
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 2048
+              },
+              "downloaded": {
+                "const": false
+              }
+            }
+          }
+        },
+        "api_details": {
+          "$ref": "#/$defs/encoded"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "context": {
+            "properties": {
+              "organization_id": {
+                "type": "string"
+              }
+            },
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "subject_type"
+                  ]
+                },
+                {
+                  "required": [
+                    "person_id"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "1.1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "context": {
+            "required": [
+              "subject_type",
+              "person_id"
+            ],
+            "properties": {
+              "organization_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "1.2"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "basis": {
+            "const": "portal_feed_api"
+          },
+          "source": {
+            "properties": {
+              "channel": {
+                "const": "http"
+              }
+            }
+          },
+          "coverage": {
+            "properties": {
+              "kind": {
+                "const": "feed_api_page"
+              },
+              "detail": {
+                "const": "list_fields_only"
+              }
+            }
+          },
+          "extraction": {
+            "properties": {
+              "method": {
+                "const": "api_fields"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "basis": {
+            "const": "browser_dom"
+          },
+          "source": {
+            "properties": {
+              "channel": {
+                "enum": [
+                  "browser",
+                  "extension"
+                ]
+              }
+            }
+          },
+          "coverage": {
+            "properties": {
+              "kind": {
+                "const": "loaded_dom"
+              },
+              "detail": {
+                "const": "visible_fields_only"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

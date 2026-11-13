@@ -1,0 +1,118 @@
+{
+  "basis": "browser_dom",
+  "content_sha256": "3f91aa07bcd02e37aef8eed658e7dd43eaf1d1760baa1f9dcb4887ecaaede53b",
+  "context": {
+    "connection_id": "demo",
+    "contour": "test",
+    "organization_id": "ORG-DEMO",
+    "verified": true
+  },
+  "coverage": {
+    "complete": false,
+    "detail": "visible_fields_only",
+    "kind": "loaded_dom",
+    "reason": "loaded_dom_only"
+  },
+  "external_read_effect": "unknown",
+  "external_unread_count": 7,
+  "extraction": {
+    "method": "configured",
+    "selector_plan": {
+      "body": "[data-field=\"body\"], .feed-description",
+      "category": "[data-category]",
+      "items": "[data-notification-id], .feed-item",
+      "link": "a[href]",
+      "sender": "[data-field=\"sender\"], p.truncate span",
+      "time": "time",
+      "title": "[data-field=\"title\"], h4, h3"
+    }
+  },
+  "issues": [],
+  "notifications": [
+    {
+      "attachments": [
+        {
+          "downloaded": false,
+          "name": {
+            "charset": "utf-8",
+            "data": "0KPQstC10LTQvtC80LvQtdC90LjQtS5wZGY=",
+            "encoding": "base64"
+          },
+          "url": "http://127.0.0.1:35503/files/1"
+        }
+      ],
+      "body": {
+        "charset": "utf-8",
+        "data": "0KHRgtGA0L7QutCwIDEK0JrQsNCy0YvRh9C60Lg6ICIgXCA8c2NyaXB0PtC90LUg0LLRi9C/0L7Qu9C90Y/RgtGMPC9zY3JpcHQ+INCf0YDQuNCy0LXRgiDwn5iA",
+        "encoding": "base64"
+      },
+      "body_available": true,
+      "body_coverage": "visible_only",
+      "category": "INFO",
+      "id": "ntf_66caf7e76baae4a6ca3c6199fe4f51909c1e9c9ddf69f2207556c3830ba292c2",
+      "identity_quality": "source_id",
+      "occurred_at": "2026-11-12T10:00:00+03:00",
+      "read_state": "unread",
+      "sender": {
+        "charset": "utf-8",
+        "data": "0KLQtdGB0YLQvtCy0L7QtSDQstC10LTQvtC80YHRgtCy0L4=",
+        "encoding": "base64"
+      },
+      "source_id": "msg-001",
+      "time_display": {
+        "charset": "utf-8",
+        "data": "0KHQtdCz0L7QtNC90Y8gMTA6MDA=",
+        "encoding": "base64"
+      },
+      "time_raw": "2026-11-12T10:00:00+03:00",
+      "title": {
+        "charset": "utf-8",
+        "data": "0J3QvtCy0LDRjyDQt9Cw0Y/QstC60LAgwqvQotC10YHRgsK7",
+        "encoding": "base64"
+      },
+      "url": "http://127.0.0.1:35503/notifications/msg-001?id=msg-001"
+    },
+    {
+      "attachments": [],
+      "body": {
+        "charset": "utf-8",
+        "data": "",
+        "encoding": "base64"
+      },
+      "body_available": false,
+      "body_coverage": "visible_only",
+      "category": null,
+      "id": "ntf_e22b8548d14869e0b46391d6de7ac3bfa559a73aba11c94301551baaf3555fa7",
+      "identity_quality": "source_id",
+      "occurred_at": null,
+      "read_state": "unknown",
+      "sender": {
+        "charset": "utf-8",
+        "data": "",
+        "encoding": "base64"
+      },
+      "source_id": "msg-002",
+      "time_display": {
+        "charset": "utf-8",
+        "data": "0JLRh9C10YDQsA==",
+        "encoding": "base64"
+      },
+      "time_raw": null,
+      "title": {
+        "charset": "utf-8",
+        "data": "0JLRgtC+0YDQvtC1INGD0LLQtdC00L7QvNC70LXQvdC40LU=",
+        "encoding": "base64"
+      },
+      "url": null
+    }
+  ],
+  "observed_at": "2026-11-12T12:09:24.527Z",
+  "schema_version": "1.0",
+  "snapshot_id": "snp_db31ce3b8853490f82292133f18608a4",
+  "source": {
+    "channel": "browser",
+    "kind": "gosuslugi_bell",
+    "url": "http://127.0.0.1:35503/feed.html"
+  },
+  "status": "succeeded"
+}

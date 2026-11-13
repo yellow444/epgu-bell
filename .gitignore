@@ -1,0 +1,9 @@
+release/
+*.tar
+*.tar.gz
+*.zip
+installation/
+data/
+session/
+config.json
+tools/*.exe
