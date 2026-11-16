@@ -1,0 +1,14 @@
+{
+  "release": "0.2.0-rc.2",
+  "date": "2026-11-16",
+  "contour": "test",
+  "organization_identity_disclosed": false,
+  "sessions_or_exports_included": false,
+  "login": {"manual_browser_login": true, "provided_session_read": true, "automatic_login_verified": false},
+  "native_installer": {"verify": true, "load": true, "initialize": true, "collect": true},
+  "live_feed": {"records_per_initial_run": [0, 0], "json_schema_valid": true, "content_hash_equal": true, "nonempty_live_dedup_verified": false, "live_record_text_base64_verified": false, "complete_coverage_verified": false, "external_read_effect": "unknown"},
+  "expired_session": {"status": "needs_user_action", "issues": ["feed_api_http_401"], "diagnostic_snapshot_saved": true, "recovery_succeeded": true},
+  "live_dom_extension_verified": false,
+  "prod_verified": false,
+  "background_tasks_created": false
+}

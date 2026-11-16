@@ -6,3 +6,4 @@
 - Public material includes installation scripts, JSON contracts, notices and synthetic examples.
 - No new remote publication or binary release upload without a user request.
 - Existing deployments and unrelated containers are outside this installer test scope.
+- Public material must not identify test operators or their organizations, sessions, internal system mnemonics, support tickets or credentials.
