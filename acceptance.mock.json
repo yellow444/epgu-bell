@@ -1,10 +1,15 @@
 {
-  "release": "0.2.0-rc.2",
-  "date": "2026-11-16",
+  "release": "0.2.0-rc.3",
+  "date": "2026-11-17",
   "mock_only": true,
   "source_tests": {
-    "python": 46,
-    "node": 7
+    "python": 54,
+    "node": 7,
+    "initial_python_passed": 52,
+    "initial_python_errors": 1,
+    "isolated_failed_test_rerun_passed": 1,
+    "initial_full_suite_passed": false,
+    "privacy_gate_tests": 8
   },
   "free_image": {
     "compiled_image_tested": true,
@@ -35,8 +40,16 @@
       1
     ],
     "same_external_ids_isolated": true,
-    "stores_separate": true
+    "stores_separate": true,
+    "verified_in_release": "0.2.0-rc.2"
   },
   "application_py_sources_in_free_image": 0,
-  "private_multi_module_in_free_image": false
+  "private_multi_module_in_free_image": false,
+  "privacy_gate": {
+    "all_image_layers_scanned": true,
+    "image_metadata_scanned": true,
+    "package_files_scanned": true,
+    "unexpected_package_files_rejected": true,
+    "image_report": "privacy.json"
+  }
 }
