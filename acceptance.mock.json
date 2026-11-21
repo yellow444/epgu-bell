@@ -1,55 +1,10 @@
 {
-  "release": "0.2.0-rc.3",
-  "date": "2026-11-17",
+  "version": "0.2.0-rc.4",
   "mock_only": true,
-  "source_tests": {
-    "python": 54,
-    "node": 7,
-    "initial_python_passed": 52,
-    "initial_python_errors": 1,
-    "isolated_failed_test_rerun_passed": 1,
-    "initial_full_suite_passed": false,
-    "privacy_gate_tests": 8
-  },
-  "free_image": {
-    "compiled_image_tested": true,
-    "external_network_disabled": true,
-    "first_count": 2,
-    "second_count": 2,
-    "stored_unique": 2,
-    "same_hash": true,
-    "json_validated": true,
-    "api_import_codes": [
-      201,
-      201
-    ],
-    "unauthorized_rejected": true,
-    "wrong_context_rejected": true,
-    "second_organization_rejected": true,
-    "expired_session_preserves_records": true,
-    "isolated_demo_passed": true,
-    "demo_during_parallel_image_load_verified": false
-  },
-  "private_multi_image": {
-    "compiled_image_tested": true,
-    "external_network_disabled": true,
-    "organizations": 2,
-    "rounds": 2,
-    "unique_per_organization": [
-      1,
-      1
-    ],
-    "same_external_ids_isolated": true,
-    "stores_separate": true,
-    "verified_in_release": "0.2.0-rc.2"
-  },
-  "application_py_sources_in_free_image": 0,
-  "private_multi_module_in_free_image": false,
-  "privacy_gate": {
-    "all_image_layers_scanned": true,
-    "image_metadata_scanned": true,
-    "package_files_scanned": true,
-    "unexpected_package_files_rejected": true,
-    "image_report": "privacy.json"
-  }
+  "source_python_tests": 74,
+  "source_node_tests": 7,
+  "integration_client_tests": 17,
+  "automation_example_tests": 8,
+  "external_crm_delivery_tested": false,
+  "one_c_runtime_tested": false
 }

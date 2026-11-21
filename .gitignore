@@ -7,3 +7,6 @@ data/
 session/
 config.json
 tools/*.exe
+__pycache__/
+*.py[cod]
+*.sqlite3

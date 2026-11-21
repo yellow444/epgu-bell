@@ -1,0 +1,27 @@
+{
+  "scope": "prior_candidate_same_collector_sources",
+  "contour": "test",
+  "date": "2026-11-20",
+  "exact_rc4_image_live_tested": false,
+  "collector_sources_match_accepted_candidate": true,
+  "counts": [
+    66,
+    66
+  ],
+  "pages_per_capture": [
+    4,
+    4
+  ],
+  "returned_page_sizes": [
+    20,
+    20,
+    20,
+    6
+  ],
+  "text_and_base64_checked": true,
+  "duplicates_after_repeat": 0,
+  "coverage_complete": false,
+  "prod_tested": false,
+  "automatic_login_tested": false,
+  "sessions_included": false
+}

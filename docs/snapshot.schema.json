@@ -23,7 +23,8 @@
       "enum": [
         "1.0",
         "1.1",
-        "1.2"
+        "1.2",
+        "1.3"
       ]
     },
     "snapshot_id": {
@@ -176,7 +177,8 @@
         "kind": {
           "enum": [
             "loaded_dom",
-            "feed_api_page"
+            "feed_api_page",
+            "feed_api_pages"
           ]
         },
         "complete": {
@@ -194,11 +196,50 @@
             "layout_unknown",
             "explicit_empty_current_view",
             "loaded_dom_only",
-            "returned_api_page"
+            "returned_api_page",
+            "returned_api_pages"
           ]
         },
         "api_has_more": {
           "type": "boolean"
+        },
+        "pages_fetched": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "view_exhausted": {
+          "type": "boolean"
+        },
+        "stop_reason": {
+          "enum": [
+            "exhausted",
+            "page_limit",
+            "item_limit",
+            "byte_limit",
+            "cursor_stalled"
+          ]
+        },
+        "next_cursor": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "lastFeedId",
+            "lastFeedDate"
+          ],
+          "properties": {
+            "lastFeedId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,512}$"
+            },
+            "lastFeedDate": {
+              "type": "string",
+              "maxLength": 128
+            }
+          }
         }
       }
     },
@@ -310,7 +351,7 @@
     },
     "notifications": {
       "type": "array",
-      "maxItems": 200,
+      "maxItems": 2000,
       "items": {
         "$ref": "#/$defs/notification"
       }
@@ -534,7 +575,10 @@
       "if": {
         "properties": {
           "schema_version": {
-            "const": "1.2"
+            "enum": [
+              "1.2",
+              "1.3"
+            ]
           }
         }
       },
@@ -553,7 +597,10 @@
           "coverage": {
             "properties": {
               "kind": {
-                "const": "feed_api_page"
+                "enum": [
+                  "feed_api_page",
+                  "feed_api_pages"
+                ]
               },
               "detail": {
                 "const": "list_fields_only"
@@ -593,6 +640,33 @@
                 "const": "visible_fields_only"
               }
             }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "1.3"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "coverage": {
+            "properties": {
+              "kind": {
+                "const": "feed_api_pages"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "notifications": {
+            "maxItems": 200
           }
         }
       }

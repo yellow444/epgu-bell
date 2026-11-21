@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0-rc.4",
+  "mock_only": true,
+  "compiled_free_api": true,
+  "compiled_request_transport": true,
+  "external_network_disabled": true,
+  "synthetic_records": 1005,
+  "source_pages_each": 6,
+  "local_api_pages_each": 2,
+  "second_import_inserted": 0,
+  "stored": 1005,
+  "api_server_stopped": true,
+  "integration_client_tests": 17,
+  "automation_example_tests": 8,
+  "external_crm_delivery_tested": false,
+  "source_server_stopped": true
+}
