@@ -26,6 +26,18 @@ linux/amd64 требуют Docker Desktop в режиме Linux containers.
 [API](docs/API.md), [пагинация](docs/PAGINATION.md),
 [интеграции](docs/INTEGRATIONS.md), [автоматизации](docs/AUTOMATION_RECIPES.md).
 
+[Вход от физлица и организации, требования ЕСИА к 2027 году и границы интеграций](docs/PLATFORM_COMPATIBILITY.md).
+
+Проверка текста документации и примеров перед коммитом:
+
+```powershell
+python tools/check_text_style.py
+python tools/test_check_text_style.py
+```
+
+Синтаксис команд и тестовые данные проверка сохраняет. Для бейджей и символов
+поддержки в корневом README сделано исключение.
+
 Bell читает уведомления выбранного представления. Статус услуги нельзя
 надежно определить только по их тексту. Полная история, тела и вложения,
 автоматический вход и боевой контур пока не приняты.
@@ -44,6 +56,19 @@ $demoRoot = Join-Path $env:LOCALAPPDATA ('EPGU Bell Demo ' + [guid]::NewGuid().T
 
 Demo использует только синтетические записи и работает без внешней сети.
 Существующие установки не обновляются и не перезаписываются.
+
+Для проверки полного пути готового пакета есть публичный скрипт без зависимостей
+от закрытого репозитория. Нужны Python 3.10+, Docker Desktop и распакованный ZIP:
+
+```powershell
+$checkRoot = Join-Path $env:LOCALAPPDATA ('Bell Free Check ' + [guid]::NewGuid().ToString('N'))
+python examples/check_single_org.py --package C:/Downloads/BellFree --output "$checkRoot"
+```
+
+Он проверяет установку, headless Demo, JSON/Base64, локальный HTTP API,
+постраничное чтение, повтор без дублей и отказ другой организации. Нужен
+только Free-пакет, реальные сессии и Multi не подключаются. Скрипт останавливает
+свой API-контейнер и удаляет свой временный токен. Рабочие установки не меняет.
 
 ## Своя организация
 
