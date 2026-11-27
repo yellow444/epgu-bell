@@ -101,3 +101,7 @@ $bellDemoRoot = Join-Path $env:LOCALAPPDATA ('EPGU Bell Demo ' + [guid]::NewGuid
 На выходе получается очередь входящих. Ее можно положить в регистр 1С, карточку Битрикс24, ServiceDesk или собственную базу. Для этого опубликованы [Python-клиент](https://github.com/yellow444/epgu-bell/blob/v0.2.0-rc.4/examples/integrations/import_notifications.py), [BSL-пример](https://github.com/yellow444/epgu-bell/blob/v0.2.0-rc.4/examples/1c/BellReader.bsl) и [рецепты автоматизации](https://github.com/yellow444/epgu-bell/blob/v0.2.0-rc.4/docs/AUTOMATION_RECIPES.md).
 
 Практический критерий простой: получить запись дважды, сохранить одну входящую карточку и дать оператору понятный переход к ее разбору. После этого уже имеет смысл обсуждать маршрутизацию, дайджесты и связь с запросами к API.
+
+## Кто делает Bell
+
+Я Максим Ситников, yellow444, автор [EPGU Bell](https://github.com/yellow444/epgu-bell) и [EPGU](https://github.com/yellow444/epgu). Bell Free можно начать использовать для одной организации без покупки Multi. Работа с несколькими организациями и помощь с внедрением обсуждаются отдельно. Условия приложения, клиентских примеров и контрактов указаны в репозитории Bell; лицензия соседнего проекта EPGU их не заменяет.
